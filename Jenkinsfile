@@ -1,28 +1,23 @@
-
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Build') {
             steps {
                 echo 'Building Docker image'
                 sh 'docker build -t devops-cicd-task .'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Checking Docker image'
                 sh 'docker image inspect devops-cicd-task'
             }
         }
-
         stage('Deploy') {
             steps {
                 echo 'Starting application'
@@ -37,7 +32,6 @@ pipeline {
             }
         }
     }
-
     post {
         success {
             echo 'Docker CI/CD pipeline completed successfully!'
